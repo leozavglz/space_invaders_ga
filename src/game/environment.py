@@ -19,6 +19,7 @@ class SpaceInvadersEnv:
     """
 
     def __init__(self, cfg: EnvConfig, seed: Optional[int] = None):
+        self._tick = 0
         self.cfg = cfg
         self.rng = random.Random(seed)
         self.np_rng = np.random.default_rng(seed)
@@ -49,6 +50,7 @@ class SpaceInvadersEnv:
 
     def reseed_episode(self) -> None:
         """Reinicia SOLO el episodio con nuevas condiciones del invasor (para evaluación repetida)."""
+        self._tick = 0
         C = self.cfg.cols
         inv_row = self.rng.randrange(0, 2)
         self.invader.r = inv_row
@@ -162,7 +164,9 @@ class SpaceInvadersEnv:
         # STAY no hace nada
 
         # Avanza el mundo
-        self._move_invader()
+        self._tick += 1
+        if (self._tick % max(1, self.cfg.invader_step_every)) == 0:
+            self._move_invader()
         self._maybe_drop_bomb()
         self._move_projectiles()
 

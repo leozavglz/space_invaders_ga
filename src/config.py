@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class EnvConfig:
     rows: int = 12
     cols: int = 11
-    invader_step_every: int = 1   # mueve al invasor cada tick
+    invader_step_every: int = 2   # mueve al invasor cada tick
     invader_zigzag_drop: int = 1  # baja 1 fila al llegar a un borde
     bomb_prob: float = 0.05       # probabilidad de soltar bomba por tick
     missile_speed: int = 1        # celdas por tick hacia arriba
