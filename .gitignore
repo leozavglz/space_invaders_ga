@@ -1,1 +1,8 @@
 .venv/
+metrics.json
+best_genome.json
+.gitignore
+metrics_plot_std.png
+.gitignore
+metrics_plot.png
+best_genome.npy
